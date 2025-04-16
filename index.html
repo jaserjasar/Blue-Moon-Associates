@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blue Moon Associates</title>
   <style>
+
+<script>
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => loader.style.display = 'none', 6000);
+  });
+
+
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -89,9 +97,42 @@
       width: 200px;
       border-radius: 10px;
     }
+.hero {
+      position: relative; width: 100%; height: 500px; overflow: hidden;
+    }
+    .hero img {
+      position: absolute; width: 100%; height: 100%; object-fit: cover;
+      animation: slide 15s infinite;
+    }
+    .hero img:nth-child(2) { animation-delay: 5s; }
+    .hero img:nth-child(3) { animation-delay: 10s; }
+
+    @keyframes slide {
+      0% {opacity: 0;}
+      10% {opacity: 1;}
+      30% {opacity: 1;}
+      40% {opacity: 0;}
+      100% {opacity: 0;}
+    }
+
+    .stats {
+      display: flex; justify-content: space-around; padding: 60px 20px;
+      background: #1a1a1a;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat h2 {
+      font-size: 48px; color: #f0c420;
+    }
+    .stat p {
+      font-size: 18px;
+    }
+
   </style>
 </head>
 <body>
+
   <header>
     <img src="logo.jpg" alt="Blue Moon Associates Logo" class="logo">
     <h1>Blue Moon Associates</h1>
@@ -108,10 +149,55 @@
     <p style="text-align:center">We are a leading Import/Export and General Trading company based in Tamil Nadu, India. With a focus on reliability and quality, we serve clients across the globe with excellence in trading and logistics.</p>
   </section>
 
+ <section class="hero">
+    <img src="hero1.jpg" alt="Slide 1"/>
+    <img src="hero2.jpg" alt="Slide 2"/>
+    <img src="hero3.jpg" alt="Slide 3"/>
+  </section>
+
+
   <section id="about">
     <h2>About Us</h2>
     <p style="text-align:center">Blue Moon Associates was established with a vision to simplify international trade and provide seamless logistics services. Our team is dedicated to ensuring smooth, timely, and secure movement of goods across borders, while building long-term relationships based on trust and performance.</p>
   </section>
+
+<section class="stats">
+    <div class="stat">
+      <h2 id="countries">0</h2>
+      <p>Countries Served</p>
+    </div>
+    <div class="stat">
+      <h2 id="years">0</h2>
+      <p>Years in Business</p>
+    </div>
+    <div class="stat">
+      <h2 id="products">0</h2>
+      <p>Products Traded</p>
+    </div>
+  </section>
+
+
+ <script>
+    function animateValue(id, start, end, duration) {
+      let obj = document.getElementById(id);
+      let range = end - start;
+      let current = start;
+      let increment = end > start ? 1 : -1;
+      let stepTime = Math.abs(Math.floor(duration / range));
+      let timer = setInterval(function() {
+          current += increment;
+          obj.textContent = current;
+          if (current == end) {
+              clearInterval(timer);
+          }
+      }, stepTime);
+    }
+
+    animateValue("countries", 0, 50, 2000);
+    animateValue("years", 0, 10, 2000);
+    animateValue("products", 0, 500, 2000);
+  </script>
+
 
   <section id="services">
     <h2>Our Services</h2>
@@ -134,6 +220,23 @@
       <img src="general_goods.jpg" alt="General Goods">
     </div>
   </section>
+
+<section id="testimonials" style="padding: 40px; background: #222;">
+  <h2 style="text-align:center;">What Our Clients Say</h2>
+  <div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
+    <div style="width:300px; margin:10px; background:#333; padding:20px; border-radius:10px;">
+      <p>"Reliable and fast shipping service!"</p><strong>- UAE Client</strong>
+    </div>
+    <div style="width:300px; margin:10px; background:#333; padding:20px; border-radius:10px;">
+      <p>"Best quality in grocery export."</p><strong>- Saudi Partner</strong>
+    </div>
+  </div>
+</section>
+
+<section id="map" style="padding: 40px; background: #222; text-align:center;">
+  <h2>Where We Trade</h2>
+  <img src="worldmap.jpg" alt="Trade Map" style="max-width:100%;height:auto;margin-top:20px;">
+</section>
 
   <section id="contact">
     <h2>Contact Us</h2>
